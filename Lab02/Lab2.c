@@ -1,88 +1,46 @@
-﻿#include <stdio.h>
+﻿#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
 #include <math.h>
 
 void printTasks()
 {
-	printf("\n40) (a*d + b*c) / (a*d)\n");
-	printf("43) (sqrt(x+1) + sqrt(x-1)) / 2√x\n");
-	printf("46) (b * a^(1/b)) / a\n");
-	printf("49) tg a * (cos 2x / a)\n");
-	printf("52) sqrt(x^2 - 4x) / (x^2 - 9)\n\n");
+	printf("26) (cos(sin(1/z)))^2\n");
+	printf("33) cbrt(m*g*cos(a))\n");
+	printf("52) sqrt(x^2 - 4x) / (x^2 - 9)\n");
+	printf("29) (x1*x2 + x1*x3 + x2*x3) / x\n");
+	printf("30) v0*t + (a * t^2) / 2\n\n");
 }
 
-double a, b, c, d, x;
-
-void task1()
+void task1(double z)
 {
 	
-	printf("Task 40: ");
-	if (a == 0)
+	printf("Task 26: ");
+	if (z == 0)
 	{
-		printf("Error! Variable 'a' can't be 0.\n");
+		printf("Error! Variable 'z' can't be 0.\n");
 		return;
 	}
 
-	if (d == 0)
-	{
-		printf("Error! Variable 'd' can't be 0.\n");
-		return;
-	}
-
-	printf("%g%s", (a * d + b * c) / (a * d), "\n");
+	printf("%g\n", pow(cos(sin(1 / z)), 2));
 
 	return;
 }
 
-void task2()
+void task2(double m, double a)
 {
-	printf("Task 43: ");
-	if (x - 1 < 0)
+	printf("Task 33: ");
+	if (m < 0)
 	{
-		printf("Error! Variable 'x' can't be less than 1.\n");
+		printf("Error! Variable 'm' can't be less than 0.\n");
 		return;
 	}
 
-	printf("%g%s", (sqrt(x + 1) + sqrt(x - 1)) / (2 * sqrt(x)), "\n");
+	printf("%g\n", cbrt(m * 9.8 * cos(a)));
 	return;
 }
 
-void task3()
-{
-	printf("Task 46: ");
-	if (a == 0)
-	{
-		printf("Error! Variable 'a' can't be 0.\n");
-		return;
-	}
-
-	if (floor(b) != b || b < 2)
-	{
-		printf("Error! Incorrect variable 'b'.\n");
-		return;
-	}
-
-	if ((int)b % 2 == 0 && a < 0)
-	{
-		printf("Error! Variable 'a' can't be less than 0.\n");
-		return;
-	}
-
-	printf("%g%s", (b * pow(a, (1 / b))) / a, "\n");
-}
-
-void task4()
-{
-	printf("Task 49: ");
-	if (a == 0)
-	{
-		printf("Error! Variable 'a' can't be 0.\n");
-		return;
-	}
-
-	printf("%g%s", tan(a) * (cos(2 * x) / a), "\n");
-}
-
-void task5()
+void task3(double x)
 {
 	printf("Task 52: ");
 	if (x * x - 4 * x < 0 || x * x - 9 == 0)
@@ -91,22 +49,53 @@ void task5()
 		return;
 	}
 
-	printf("%g%s", sqrt(x * x - 4 * x) / (x * x - 9), "\n");
+	printf("%g\n", sqrt(x * x - 4 * x) / (x * x - 9));
 	return;
+}
+
+void task4(double x, double x1, double x2, double x3)
+{
+	printf("Task 29: ");
+	if (x == 0)
+	{
+		printf("Error! Variable 'x' can't be 0.\n");
+		return;
+	}
+
+	printf("%g\n", (x1 * x2 + x1 * x3 + x2 * x3) / x);
+}
+
+void task5(double v0, double t, double a)
+{
+	printf("Task 30: ");
+	if (t < 0)
+	{
+		printf("Error! Variable 't' can't be less than 0.\n");
+		return;
+	}
+
+	printf("%g\n", v0 * t + ((a * t * t) / 2));
 }
 
 int main()
 {
-	printf("Enter a, b, c, d, x: ");
-	scanf_s("%lf%lf%lf%lf%lf", &a, &b, &c, &d, &x);
-	
+	double a, t, m, z, x, x1, x2, x3, v0;
 	printTasks();
+	printf("Enter a, t, m, z, x, x1, x2, x3, v0 (total 9 digits): ");
 
-	task1();
-	task2();
-	task3();
-	task4();
-	task5();
+	while (scanf("%lf %lf %lf %lf %lf %lf %lf %lf %lf", &a, &t, &m, &z, &x, &x1, &x2, &x3, &v0) != 9)
+	{
+		printf("Uncorrect input!\n");
+		while (getchar() != '\n');
+	}
+
+	printf("\na: %g\nt: %g\nm: %g\nz: %g\nx: %g\nx1: %g\nx2: %g\nx3: %g\nv0: %g\n\n", a, t, m, z, x, x1, x2, x3, v0);
+
+	task1(z);
+	task2(m, a);
+	task3(x);
+	task4(x, x1, x2, x3);
+	task5(v0, t, a);
 
 	return 0;
 }
