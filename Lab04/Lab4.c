@@ -4,7 +4,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include <locale.h>
-//46 53 72 109 170 261 108 277 214 205
+
 void printTasks()
 {
 	printf("46) Знайти:\nа) суму квадратів усіх цілих чисел від 10 до 50;\nб) суму квадратів усіх цілих чисел від a до 50 (значення a вводиться із клавіатури; a ≤ 50);\nв) суму квадратів усіх цілих чисел від a до b(значення b вводиться із клавіатури; b ≥ –10);\nг) суму квадратів усіх цілих чисел від a до b(значення a і b вводяться з клавіатури; b ≥ а).\n");
@@ -16,17 +16,17 @@ void printTasks()
 	printf("108) Скільки можна купити бугаїв, корів і телят, платячи за бика 7000 грн., за корову - 3000 грн., а за теля - 1000 грн., якщо на 100000 грн. треба купити 100 голів худоби? Для розв'язання задачі скласти алгоритм.\n");
 	printf("277) Дано натуральне число, де всі цифри різні. Визначити, яка цифра розташована в ньому лівіше: максимальна чи мінімальна.\n");
 	printf("214) a_n = 0.5 * cos(a_(n-1))\n");
-	printf("205) \n\n");
+	printf("205) a_n = (2^n * n!) / n^n\n\n");
 }
 
 void task1()
 {
-	printf("46(1))\na) ");
+	printf("\n46(1))\na) ");
 
 	long long sum = 0;
 	for (int i = 10; i <= 50; i++)
 	{
-		sum += i*i;
+		sum += i * i;
 	}
 	printf("%d\nb) ", sum);
 
@@ -41,10 +41,10 @@ void task1()
 	sum = 0;
 	for (int i = a; i <= 50; i++)
 	{
-		sum += i*i;
+		sum += i * i;
 	}
 
-	printf("Answer: %d\nc) ");
+	printf("Answer: %d\nc) ", sum);
 	sum = 0;
 	int b;
 
@@ -57,14 +57,15 @@ void task1()
 
 	for (int i = a; i <= b; i++)
 	{
-		sum += i*i;
+		sum += i * i;
 	}
+	printf("Answer: %d\n", sum);
 }
 
 void task2()
 {
-	printf("72(2)) ");
-	
+	printf("\n53(2)) ");
+
 	int current = 4; //2^2
 	int res = 0;
 
@@ -80,8 +81,8 @@ void task2()
 void task3()
 {
 	int n;
-	long long sum;
-	printf("13(3)) ");
+	long long sum = 0;
+	printf("\n72(3)) ");
 	printf("enter n: ");
 	while (scanf("%d", &n) != 1 || n < 1 || n > 10)
 	{
@@ -95,13 +96,13 @@ void task3()
 
 		for (int j = 2; j <= i; j++)
 		{
-			k *= j
+			k *= j;
 		}
 
 		sum += k;
 	}
 
-	printf("Answer: %d", sum)
+	printf("Answer: %d\n", sum);
 }
 
 bool isPrime(int n)
@@ -113,14 +114,14 @@ bool isPrime(int n)
 			return false;
 		}
 	}
-	
+
 	return true;
 }
 
 void task4()
 {
-	printf("109(4)) ");
-	
+	printf("\n109(4)) ");
+
 	for (int i = 0; i <= 15; i++)
 	{
 		int res = i * i + i + 17;
@@ -139,8 +140,8 @@ void task4()
 
 void task5()
 {
-	printf("170(5)) ");
-	
+	printf("\n170(5)) ");
+
 	double numbers[15];
 	double n;
 	printf("enter numbers: ");
@@ -164,36 +165,36 @@ void task5()
 	printf("a) ");
 	for (int i = 0; numbers[i] < n && i < 15; i++)
 	{
-		printf("%lf ", numbers[i]);
+		printf("%g ", numbers[i]);
 		k = i;
 	}
 
-	printf("b) %lf(%d), %lf(%d)\n", numbers[k], k + 1, numbers[k + 1], k + 2);
+	printf("\nb) %g(%d), %g(%d)\n", numbers[k], k + 1, numbers[k + 1], k + 2);
 }
 
 void task6()
 {
-	printf("261(6)) \n");
-	
+	printf("\n261(6)) \n");
+
 	int a = 1, b = -2;
 
-	for (double i = -1; i <= 5; i += 0.5)
+	for (double x = -1; x <= 5; x += 0.5)
 	{
-		double y = (0.3 * a * b * x) / (2 * a - b * x) - 3 * sqrt((2 * a - arctg(x)) / abs(a - x));
-		printf("y = %g, x = %g\n", y, i)
+		double y = (0.3 * a * b * x) / (2 * a - b * x) - 3 * sqrt((2 * a - atan(x)) / fabs(a - x));
+		printf("y = %g, x = %g\n", y, x);
 	}
 }
 
 void task7()
 {
-	printf("108(7)) ");
-	
-	printf("Якщо треба купити мінімум 100 голів, то можна купити лише 100 телят, бо якщо купити навіть хочаб одну корову, а далі лише телят, то 100 голів не набереться.")
+	printf("\n108(7)) ");
+
+	printf("Якщо треба купити мінімум 100 голів, то можна купити лише 100 телят, бо якщо купити навіть хочаб одну корову, а далі лише телят, то 100 голів не набереться.\n");
 }
 
 void task8()
 {
-	printf("277(8)) ");
+	printf("\n277(8)) ");
 	int n;
 	printf("Enter n: ");
 	while (scanf("%d", &n) != 1 || n < 10)
@@ -202,7 +203,12 @@ void task8()
 		while (getchar() != '\n');
 	}
 
-	int min_i, min_d, max_i, max_d, current_idx = 0;
+	if (n < 10)
+	{
+		printf("У числі лише одна цифра.\n");
+	}
+
+	int min_i, min_d = 10, max_i, max_d = -1, current_idx = 0;
 
 	while (n > 0)
 	{
@@ -211,7 +217,7 @@ void task8()
 
 		if (d > max_d)
 		{
-			max_d = n;
+			max_d = d;
 			max_i = current_idx;
 		}
 		if (d < min_d)
@@ -236,21 +242,21 @@ void task8()
 void task9()
 {
 	double e = 0.001;
-	printf("214(9)) 0.5 ");
-	int a_l = 0.5, a_n = -100;
+	printf("\n214(9)) 0.5 ");
+	double a_l = 0.5, a_n = -100;
 
 	do
 	{
 		if (a_n != -100)
 		{
 			a_l = a_n;
-			printf("%lf ", a_l);
+			printf("%g ", a_l);
 		}
-		
-		a_n = 0.5 * cos(a_l);
-	} while (abs(a_n - a_l) > e);
 
-	printf(a_n);
+		a_n = 0.5 * cos(a_l);
+	} while (fabs(a_n - a_l) > e);
+
+	printf("%g", a_n);
 }
 
 int factorial(int n)
@@ -267,7 +273,7 @@ int factorial(int n)
 
 void task10()
 {
-	printf("205(10)) ");
+	printf("\n\n205(10)) ");
 	double e, a, sum = 0;
 	int i = 1;
 
@@ -282,14 +288,15 @@ void task10()
 	{
 		a = pow(2, i) * factorial(i) / pow(i, i);
 
-		if (abs(a) >= e)
+		if (fabs(a) >= e)
 		{
 			sum += a;
 		}
-		i++;
-	} while (abs(a) >= e);
 
-	printf("Answer: %lf\n", sum);
+		i++;
+	} while (fabs(a) >= e);
+
+	printf("Answer: %g\n", sum);
 }
 
 int main()
