@@ -21,14 +21,14 @@ void printTasks()
 
 void task1()
 {
-	printf("\n46(1))\na) ");
+	printf("46(1))\na) ");
 
 	long long sum = 0;
 	for (int i = 10; i <= 50; i++)
 	{
 		sum += i * i;
 	}
-	printf("%d\nb) ", sum);
+	printf("%lld\nb) ", sum);
 
 	int a;
 	printf("enter a: ");
@@ -44,7 +44,7 @@ void task1()
 		sum += i * i;
 	}
 
-	printf("Answer: %d\nc) ", sum);
+	printf("Answer: %lld\nc) ", sum);
 	sum = 0;
 	int b;
 
@@ -59,12 +59,12 @@ void task1()
 	{
 		sum += i * i;
 	}
-	printf("Answer: %d\n", sum);
+	printf("Answer: %lld\n", sum);
 }
 
 void task2()
 {
-	printf("\n53(2)) ");
+	printf("53(2)) ");
 
 	int current = 4; //2^2
 	int res = 0;
@@ -82,7 +82,7 @@ void task3()
 {
 	int n;
 	long long sum = 0;
-	printf("\n72(3)) ");
+	printf("72(3)) ");
 	printf("enter n: ");
 	while (scanf("%d", &n) != 1 || n < 1 || n > 10)
 	{
@@ -102,7 +102,7 @@ void task3()
 		sum += k;
 	}
 
-	printf("Answer: %d\n", sum);
+	printf("Answer: %lld\n", sum);
 }
 
 bool isPrime(int n)
@@ -120,7 +120,7 @@ bool isPrime(int n)
 
 void task4()
 {
-	printf("\n109(4)) ");
+	printf("109(4)) ");
 
 	for (int i = 0; i <= 15; i++)
 	{
@@ -140,19 +140,12 @@ void task4()
 
 void task5()
 {
-	printf("\n170(5)) ");
+	printf("170(5)) ");
 
-	double numbers[15];
-	double n;
-	printf("enter numbers: ");
-	for (int i = 0; i < 15; i++)
-	{
-		while (scanf("%lf", &numbers[i]) != 1)
-		{
-			printf("Uncorrect input!\n");
-			while (getchar() != '\n');
-		}
-	}
+	double n, c_n, l_n = 0, n_n = 0;
+	int c_i, l_i;
+	bool finded = false;
+
 	printf("\nEnter n: ");
 	while (scanf("%lf", &n) != 1)
 	{
@@ -160,26 +153,50 @@ void task5()
 		while (getchar() != '\n');
 	}
 
-	int k = 0;
-
-	printf("a) ");
-	for (int i = 0; numbers[i] < n && i < 15; i++)
+	printf("enter numbers: ");
+	for (int i = 0; i < 15; i++)
 	{
-		printf("%g ", numbers[i]);
-		k = i;
+		while (scanf("%lf", &c_n) != 1)
+		{
+			printf("Uncorrect input!\n");
+			while (getchar() != '\n');
+		}
+
+		if (!finded)
+		{
+			l_n = n_n;
+			n_n = c_n;
+		}
+
+		if (n_n > n && l_n < n && !finded)
+		{
+			finded = true;
+			c_i = i + 1;
+			l_i = i;
+		}
+
+		if (c_n < n)
+		{
+			printf("%g ", c_n);
+		}
 	}
 
-	printf("\nb) %g(%d), %g(%d)\n", numbers[k], k + 1, numbers[k + 1], k + 2);
+	printf("\nb) %g(%d), %g(%d)\n", l_n, l_i, n_n, c_i);
 }
 
 void task6()
 {
-	printf("\n261(6)) \n");
+	printf("261(6)) \n");
 
 	int a = 1, b = -2;
 
 	for (double x = -1; x <= 5; x += 0.5)
 	{
+		if ((2 * a - b * x) == 0 || (2 * a - atan(x) < 0 || fabs(a - x) == 0))
+		{
+			printf("Error!, x = %g\n", x);
+		}
+
 		double y = (0.3 * a * b * x) / (2 * a - b * x) - 3 * sqrt((2 * a - atan(x)) / fabs(a - x));
 		printf("y = %g, x = %g\n", y, x);
 	}
@@ -187,14 +204,27 @@ void task6()
 
 void task7()
 {
-	printf("\n108(7)) ");
+	printf("108(7)) ");
+	const int sum = 100000;
 
-	printf("Якщо треба купити мінімум 100 голів, то можна купити лише 100 телят, бо якщо купити навіть хочаб одну корову, а далі лише телят, то 100 голів не набереться.\n");
+	for (int b = 0; b <= 100; b++)
+	{
+		for (int k = 0; k <= 100; k++)
+		{
+			for (int t = 0; t <= 100; t++)
+			{
+				if (b + k + t >= 100 && b * 7000 + k * 3000 + t * 1000 <= sum)
+				{
+					printf("Бики: %d, корови: %d, телята: %d.", b, k, t);
+				}
+			}
+		}
+	}
 }
 
 void task8()
 {
-	printf("\n277(8)) ");
+	printf("277(8)) ");
 	int n;
 	printf("Enter n: ");
 	while (scanf("%d", &n) != 1 || n < 10)
@@ -242,7 +272,7 @@ void task8()
 void task9()
 {
 	double e = 0.001;
-	printf("\n214(9)) 0.5 ");
+	printf("214(9)) 0.5 ");
 	double a_l = 0.5, a_n = -100;
 
 	do
@@ -259,7 +289,7 @@ void task9()
 	printf("%g", a_n);
 }
 
-int factorial(int n)
+long long factorial(int n)
 {
 	long long f = 1;
 
@@ -273,7 +303,7 @@ int factorial(int n)
 
 void task10()
 {
-	printf("\n\n205(10)) ");
+	printf("\n205(10)) ");
 	double e, a, sum = 0;
 	int i = 1;
 
